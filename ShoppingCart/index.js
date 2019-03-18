@@ -1,6 +1,7 @@
 const app = new Vue({
   el: '#app',
   data: {
+    selected: [],
     list: [
       {
         id: 1,
@@ -27,9 +28,14 @@ const app = new Vue({
       let total = 0
       for (let i = 0; i < this.list.length; i++) {
         const item = this.list[i]
-        total += item.price * item.count
+        if (this.selected.indexOf(item.id) >= 0) {
+          total += item.price * item.count
+        }
       }
       return total.toString().replace(/\B(?=(\d{3})+$)/g, ',')
+    },
+    selectedAll: function () {
+      return this.selected.length === this.list.length
     }
   },
   methods: {
@@ -42,6 +48,15 @@ const app = new Vue({
     },
     handleRemove: function (index) {
       this.list.splice(index, 1)
+    },
+    toggleSelectAll: function () {
+      const selected = []
+      if (this.selected.length !== this.list.length) {
+        this.list.forEach(item => {
+          selected.push(item.id)
+        })
+      }
+      this.selected = selected
     }
   },
 })

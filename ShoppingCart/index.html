@@ -15,6 +15,9 @@
       <table>
         <thead>
           <tr>
+            <th>
+              <input type="checkbox" @change="toggleSelectAll" :checked="selectedAll">全选
+            </th>
             <th></th>
             <th>商品名称</th>
             <th>商品单价</th>
@@ -24,6 +27,7 @@
         </thead>
         <tbody>
           <tr v-for="(item, index) in list">
+            <td><input type="checkbox" v-model="selected" :value="item.id"></td>
             <td>{{ index + 1 }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.price }}</td>
