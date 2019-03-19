@@ -25,19 +25,22 @@
             <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="(item, index) in list">
+        <tbody v-for="(group,groupIndex) in list">
+          <tr>
+            <td colspan="6">{{group.name}}</td>
+          </tr>
+          <tr v-for="(item, index) in group.list">
             <td><input type="checkbox" v-model="selected" :value="item.id"></td>
             <td>{{ index + 1 }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.price }}</td>
             <td>
-              <button @click="handleReduce(index)" :disabled="item.count === 1">-</button>
+              <button @click="handleReduce(groupIndex,index)" :disabled="item.count === 1">-</button>
               {{ item.count }}
-              <button @click="handleAdd(index)">+</button>
+              <button @click="handleAdd(groupIndex,index)">+</button>
             </td>
             <td>
-              <button @click="handleRemove(index)">移除</button>
+              <button @click="handleRemove(groupIndex,index)">移除</button>
             </td>
           </tr>
         </tbody>
