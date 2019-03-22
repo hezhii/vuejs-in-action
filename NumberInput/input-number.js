@@ -11,6 +11,10 @@ Vue.component('input-number', {
     value: {
       type: Number,
       default: 0
+    },
+    step: {
+      type: Number,
+      default: 1
     }
   },
   template: '\
@@ -28,14 +32,10 @@ Vue.component('input-number', {
   },
   methods: {
     handleDown: function () {
-      if (this.currentValue > this.min) {
-        this.$emit('input', this.currentValue - 1)
-      }
+      this.$emit('input', Math.max(this.currentValue - this.step, this.min))
     },
     handleUp: function () {
-      if (this.currentValue < this.max) {
-        this.$emit('input', this.currentValue + 1)
-      }
+      this.$emit('input', Math.min(this.currentValue + this.step, this.max))
     },
     handleChange: function (e) {
       let v = e.target.value.trim()
