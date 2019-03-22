@@ -15,7 +15,7 @@ Vue.component('input-number', {
   },
   template: '\
     <div class="input-number"> \
-      <input type="text" :value="currentValue" @change="handleChange"> \
+      <input type="text" :value="currentValue" @change="handleChange" @keydown.up.prevent="handleUp" @keydown.down.prevent="handleDown"> \
       <button @click="handleDown" :disabled="currentValue <= min">-</button> \
       <button @click="handleUp" :disabled="currentValue >= max">+</button> \
     </div>',
