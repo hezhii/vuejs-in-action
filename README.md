@@ -92,3 +92,9 @@
 我没有按照书中示例代码来实现，书中在 input-number 内部也维护了一个状态。我这里的实现类似于 React 中的受控组件，数据来源于父组件传递过来的属性，修改时触发事件。Vue 中即使给表单输入元素绑定了 value，表单元素仍会保留内部状态，这点和 React 还是有区别的。
 
 练习一中添加对键盘上下键的支持通过键盘事件及其修饰符即可实现。
+
+### 标签页组件
+
+[源码](https://github.com/hezhii/vuejs-in-action/tree/master/Tabs)
+
+Tabs 组件由 Tabs 和 Pane 两个组件组成，Pane 作为 Tabs 的子组件来使用。其中，Pane 提供标题和内容，Tabs 负责控制。
