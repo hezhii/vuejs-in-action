@@ -6,7 +6,8 @@ Vue.component('tabs', {
           :class="tabCls(item)" \
           v-for="(item, index) in navList" \
           @click="handleChange(index)"> \
-          {{item.label}} \
+          <span>{{item.label}}</span> \
+          <img class="icon-close" src="close.png" v-if="item.closable"/> \
         </div> \
       </div> \
       <div class="tabs-content"> \
@@ -42,7 +43,8 @@ Vue.component('tabs', {
       tabs.forEach((pane, index) => {
         this.navList.push({
           label: pane.label,
-          name: pane.name || index
+          name: pane.name || index,
+          closable: pane.closable
         })
         if (!pane.name) pane.name = index
       })

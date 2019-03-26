@@ -98,3 +98,5 @@
 [源码](https://github.com/hezhii/vuejs-in-action/tree/master/Tabs)
 
 Tabs 组件由 Tabs 和 Pane 两个组件组成，Pane 作为 Tabs 的子组件来使用。其中，Pane 提供标题和内容，Tabs 负责控制。
+
+练习一：添加了 closeable 属性后不起作用，找了半天没找到原因，最终原来是 navList 中 push 时没有加入该属性（不是直接 push 的 Pane 实例）。

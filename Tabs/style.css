@@ -26,6 +26,10 @@
   position: relative;
 }
 
+.icon-close {
+  vertical-align: middle;
+}
+
 .tabs-tab-active {
   color: #3399ff;
   border-top: 1px solid #3399ff;
