@@ -1,7 +1,7 @@
 Vue.component('pane', {
   name: 'pane',
   template: '\
-    <div class="pane" v-show="show"> \
+    <div :class="className"> \
       <slot></slot> \
     </div>',
   props: {
@@ -20,6 +20,11 @@ Vue.component('pane', {
   data: function () {
     return {
       show: true
+    }
+  },
+  computed: {
+    className() {
+      return ['pane', this.show ? '' : 'hide']
     }
   },
   methods: {

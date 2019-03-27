@@ -5,19 +5,19 @@ var app = new Vue({
     panes: [
       {
         label: '标签一',
-        name: '1',
+        name: '0',
         closable: true,
         content: '标签一的内容'
       },
       {
         label: '标签二',
-        name: '2',
+        name: '1',
         closable: true,
         content: '标签二的内容'
       },
       {
         label: '标签三',
-        name: '3',
+        name: '2',
         content: '标签三的内容'
       }
     ]

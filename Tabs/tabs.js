@@ -15,7 +15,7 @@ Vue.component('tabs', {
           /> \
         </div> \
       </div> \
-      <div class="tabs-content"> \
+      <div class="tabs-content" :style="contentStyle()"> \
         <slot></slot> \
       </div> \
     </div>',
@@ -38,6 +38,11 @@ Vue.component('tabs', {
           'tabs-tab-active': item.name === this.currentValue
         }
       ]
+    },
+    contentStyle() {
+      return {
+        marginLeft: '-' + this.currentValue + '00%'
+      }
     },
     getTabs() {
       return this.$children.filter(item => item.$options.name === 'pane')
