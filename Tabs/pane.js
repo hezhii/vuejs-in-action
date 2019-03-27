@@ -34,5 +34,8 @@ Vue.component('pane', {
   },
   mounted() {
     this.updateNav()
+  },
+  destroyed() {
+    this.updateNav()
   }
 })

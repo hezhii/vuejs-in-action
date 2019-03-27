@@ -7,7 +7,12 @@ Vue.component('tabs', {
           v-for="(item, index) in navList" \
           @click="handleChange(index)"> \
           <span>{{item.label}}</span> \
-          <img class="icon-close" src="close.png" v-if="item.closable"/> \
+          <img \
+            class="icon-close" \
+            src="close.png" \
+            v-if="item.closable" \
+            @click.stop="handleClose(index)" \
+          /> \
         </div> \
       </div> \
       <div class="tabs-content"> \
@@ -51,6 +56,7 @@ Vue.component('tabs', {
       if (this.currentValue == null) {
         this.currentValue = tabs[0].name
       }
+      this.updateStatus()
     },
     updateStatus() {
       const tabs = this.getTabs()
@@ -58,10 +64,28 @@ Vue.component('tabs', {
     },
     handleChange(index) {
       const nav = this.navList[index]
+      if (!nav) {
+        return
+      }
       const name = nav.name
       this.currentValue = name
       this.$emit('input', name)
       this.$emit('on-click', name)
+    },
+    handleClose(index) {
+      this.$emit('on-remove', index)
+
+      // 关闭了当前标签页
+      const length = this.navList.length
+      const nav = this.navList[index]
+      if (this.currentValue === nav.name) {
+        if (index === length - 1) {
+          // 如果是最后一个则选中前一个
+          this.handleChange(length - 2)
+        } else {
+          this.handleChange(index + 1)
+        }
+      }
     }
   },
   watch: {

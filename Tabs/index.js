@@ -1,6 +1,30 @@
 var app = new Vue({
   el: '#app',
   data: {
-    activeKey: '1'
+    activeKey: '2',
+    panes: [
+      {
+        label: '标签一',
+        name: '1',
+        closable: true,
+        content: '标签一的内容'
+      },
+      {
+        label: '标签二',
+        name: '2',
+        closable: true,
+        content: '标签二的内容'
+      },
+      {
+        label: '标签三',
+        name: '3',
+        content: '标签三的内容'
+      }
+    ]
+  },
+  methods: {
+    handleRemove(index) {
+      this.panes.splice(index, 1)
+    }
   }
 })
