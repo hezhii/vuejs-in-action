@@ -69,9 +69,51 @@
 
 子组件定义 `<slot>` 时可以设置 name，然后在使用时通过 `slot` 属性去匹配相应的 name，这点比 React 中要方便，如果 React 中这样做需要遍历 children 去进行匹配，不过 React 中可以通过不同的属性传递 slot 的内容。
 
-### 作用于插槽
+### 作用域插槽
 
 这个理解起来感觉和 React 中的 render props 类似，作用就是可以复用子组件内部的一些逻辑，同时又将内容的渲染交给父组件。
+
+## 自定义指令
+
+注册自定义指令：
+
+```js
+// 全局注册
+Vue.directive('focus', {
+  
+})
+
+// 局部注册
+var app = new App({
+  el: '#app',
+  directives: {
+    focus: {
+      // 指令选项
+    }
+  }
+})
+```
+
+自定义指令的选项是由几个钩子函数组成的，每个都是可选的。
+
+- bind：只调用一次，指定第一次绑定到元素时调用。
+- inserted：被绑定元素插入父节点时调用。
+- update：被绑定元素所在模板更新时调用，而不论绑定值是否变化。
+- componentUpdated：被绑定元素所在模板完成一次更新周期时调用。
+- unbind：指令与元素解绑时调用。
+
+钩子函数的参数：
+
+- el：指令绑定的元素，可以用来直接操作 DOM。
+- binding：一个绑定对象，包含以下属性：
+  - name：指令名，不包括 `v-` 前缀。
+  - value：指定的绑定值。
+  - oldValue：指定之前绑定的值，仅在 `update` 和 `componentUpdated` 中可用。
+  - expression：绑定值的字符串形式。
+  - arg：传给指令的参数。例如 `v-my-directive:foo`，arg 的值是 `foo`。
+  - modifiers：一个包含修饰符的对象。
+- vnode：Vue 编译生成的虚拟节点。
+- oldVnode：上一个虚拟节点。
 
 ## DEMO
 
